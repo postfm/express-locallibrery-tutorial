@@ -13,8 +13,10 @@ var catalogRouter = require("./routes/catalog");
 
 let mongoose = require("mongoose");
 
-let mongoDB =
+let dev_db_url =
   "mongodb+srv://user:user@cluster0.ygdja.mongodb.net/locallibrery?retryWrites=true&w=majority";
+let mongoDB = process.env.MONGODB_URI || dev_db_url;
+
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 let db = mongoose.connection;
